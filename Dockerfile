@@ -7,20 +7,11 @@ MAINTAINER KBase Developer
 # installation scripts.
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get update -y
-RUN apt-get install wget linux-headers-$(uname -r) -y
+#RUN apt-get install wget linux-headers-$(uname -r) -y
+RUN apt-get install -y wget linux-headers-5.15.0-53-generic
 RUN distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g') && dpkg -i cuda-keyring_1.0-1_all.deb
 RUN apt-get update -y && apt-get -y install cuda-drivers
 
-
-RUN apt-get update -y &&\
-apt-get upgrade -y &&\
-apt-get update -y &&\
-apt-get install wget &&\
-apt-get install linux-headers-$(uname -r) &&\ 
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g') &&\
-dpkg -i cuda-keyring_1.0-1_all.deb &&\
-apt-get update &&\ 
-apt-get -y install cuda-drivers 
  
 # -----------------------------------------
 
