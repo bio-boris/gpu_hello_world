@@ -6,6 +6,7 @@ MAINTAINER KBase Developer
 # install line here, a git checkout to download code, or run any other
 # installation scripts.
 
+# Note, this will NOT run on mac, you need to build as linux
 RUN apt-get update -y && apt-get upgrade -y && apt-get update -y
 RUN apt-get install wget linux-headers-$(uname -r) -y
 #RUN apt-get install -y wget linux-headers-5.15.0-53-generic
