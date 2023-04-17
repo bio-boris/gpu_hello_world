@@ -80,7 +80,7 @@ class gpu_hello_worldTest(unittest.TestCase):
     def test_run_gpu_hello_world_ok(self):
         # call your implementation
         ret = self.serviceImpl.run_gpu_hello_world(self.ctx,
-                                                {'workspace_name': 1,
+                                                {'workspace_name': self.wsName,
                                                  'assembly_input_ref': 1,
                                                  'min_length': 10
                                                  })
