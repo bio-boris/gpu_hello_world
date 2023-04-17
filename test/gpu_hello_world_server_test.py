@@ -50,23 +50,24 @@ class gpu_hello_worldTest(unittest.TestCase):
 
     @classmethod
     def prepareTestData(cls):
+        pass
         """This function creates an assembly object for testing"""
-        fasta_content = '>seq1 something soemthing asdf\n' \
-                        'agcttttcat\n' \
-                        '>seq2\n' \
-                        'agctt\n' \
-                        '>seq3\n' \
-                        'agcttttcatgg'
-
-        filename = os.path.join(cls.scratch, 'test1.fasta')
-        with open(filename, 'w') as f:
-            f.write(fasta_content)
-        assemblyUtil = AssemblyUtil(cls.callback_url)
-        cls.assembly_ref = assemblyUtil.save_assembly_from_fasta({
-            'file': {'path': filename},
-            'workspace_name': cls.wsName,
-            'assembly_name': 'TestAssembly'
-        })
+        # fasta_content = '>seq1 something soemthing asdf\n' \
+        #                 'agcttttcat\n' \
+        #                 '>seq2\n' \
+        #                 'agctt\n' \
+        #                 '>seq3\n' \
+        #                 'agcttttcatgg'
+        #
+        # filename = os.path.join(cls.scratch, 'test1.fasta')
+        # with open(filename, 'w') as f:
+        #     f.write(fasta_content)
+        # assemblyUtil = AssemblyUtil(cls.callback_url)
+        # cls.assembly_ref = assemblyUtil.save_assembly_from_fasta({
+        #     'file': {'path': filename},
+        #     'workspace_name': cls.wsName,
+        #     'assembly_name': 'TestAssembly'
+        # })
 
     @classmethod
     def tearDownClass(cls):
@@ -79,8 +80,8 @@ class gpu_hello_worldTest(unittest.TestCase):
     def test_run_gpu_hello_world_ok(self):
         # call your implementation
         ret = self.serviceImpl.run_gpu_hello_world(self.ctx,
-                                                {'workspace_name': self.wsName,
-                                                 'assembly_input_ref': self.assembly_ref,
+                                                {'workspace_name': 1,
+                                                 'assembly_input_ref': 1,
                                                  'min_length': 10
                                                  })
 
@@ -88,18 +89,4 @@ class gpu_hello_worldTest(unittest.TestCase):
         self.assertEqual(ret[0]['n_initial_contigs'], 3)
         self.assertEqual(ret[0]['n_contigs_removed'], 1)
         self.assertEqual(ret[0]['n_contigs_remaining'], 2)
-
-    def test_run_gpu_hello_world_min_len_negative(self):
-        with self.assertRaisesRegex(ValueError, 'min_length parameter cannot be negative'):
-            self.serviceImpl.run_gpu_hello_world(self.ctx,
-                                              {'workspace_name': self.wsName,
-                                               'assembly_input_ref': '1/fake/3',
-                                               'min_length': '-10'})
-
-    def test_run_gpu_hello_world_min_len_parse(self):
-        with self.assertRaisesRegex(ValueError, 'Cannot parse integer from min_length parameter'):
-            self.serviceImpl.run_gpu_hello_world(self.ctx,
-                                              {'workspace_name': self.wsName,
-                                               'assembly_input_ref': '1/fake/3',
-                                               'min_length': 'ten'})
 

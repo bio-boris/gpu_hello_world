@@ -71,6 +71,8 @@ This sample module contains one small method that filters contigs.
 
         # Convert output from bytes to string
         nvidia_smi_output = nvidia_smi_output.decode('utf-8')
+        
+        logging.info({nvidia_smi_output})
 
         # Step 5 - Build a Report and return
         reportObj = {
