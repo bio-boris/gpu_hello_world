@@ -7,14 +7,18 @@ MAINTAINER KBase Developer
 # installation scripts.
 
 # Note, this will NOT run on mac, you need to build as linux
-RUN apt-get update -y && apt-get upgrade -y && apt-get update -y
-RUN apt-get install wget linux-headers-$(uname -r) -y
-#RUN apt-get install -y wget linux-headers-5.15.0-53-generic
-RUN distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g') && wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/cuda-keyring_1.0-1_all.deb
-RUN dpkg -i cuda-keyring_1.0-1_all.deb
-RUN apt-get update -y && apt-get -y install cuda-drivers
+# This isn't even necessary it seems, nvidia-smi gets passed through
 
- 
+#RUN apt-get update -y && apt-get upgrade -y && apt-get update -y
+#RUN apt-get install wget linux-headers-$(uname -r) -y
+##RUN apt-get install -y wget linux-headers-5.15.0-53-generic
+#RUN distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g') && wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/cuda-keyring_1.0-1_all.deb
+#RUN dpkg -i cuda-keyring_1.0-1_all.deb
+#RUN apt-get update -y && apt-get -y install cuda-drivers
+
+
+# Needs to match whats on the machine nvidia-utils-520
+ sudo apt-key del 7fa2af80
 # -----------------------------------------
 
 COPY ./ /kb/module
