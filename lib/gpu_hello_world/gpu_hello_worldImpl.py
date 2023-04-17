@@ -6,7 +6,7 @@ import os
 import subprocess
 from pprint import pformat
 
-from Bio import SeqIO
+# from Bio import SeqIO
 
 from installed_clients.AssemblyUtilClient import AssemblyUtil
 from installed_clients.KBaseReportClient import KBaseReport
